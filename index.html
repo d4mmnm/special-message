@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Message for You</title>
+    <style>
+        body {
+            background-color: #ffe6e6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        h1 {
+            color: #ff4d6d;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #555;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .buttons {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
+        }
+
+        #noBtn {
+            background-color: #ddd;
+            color: #333;
+            position: absolute; /* Needed for the movement logic */
+            left: 140px; /* Initial position adjustment */
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #successMessage img {
+            width: 150px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="mainCard">
+        <h1>I have a question...</h1>
+        <p>aku suka mu ❤️</p>
+        
+        <div class="buttons">
+            <button id="yesBtn" onclick="showSuccess()">Yes!</button>
+            <button id="noBtn" onmouseover="moveButton()">No</button>
+        </div>
+    </div>
+
+    <div class="container hidden" id="successCard">
+        <h1>Yay! ❤️</h1>
+        <p>You just made my day! thx dear😊</p>
+        <div id="successMessage">
+            <img src="ad.jpg" alt="Happy Dance">
+        </div>
+    </div>
+
+    <script>
+        function moveButton() {
+            const noBtn = document.getElementById('noBtn');
+            
+            // Generate random coordinates within the window
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            
+            // Move the button to the random location
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        }
+
+        function showSuccess() {
+            document.getElementById('mainCard').classList.add('hidden');
+            document.getElementById('successCard').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
